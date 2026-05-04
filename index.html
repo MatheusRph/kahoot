@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar - PIN do Jogo</title>
+    <style>
+        :root {
+            --primary: #46178f;
+            --secondary: #333333;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #46178f 0%, #250850 100%);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #d8d8d8;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background: #111;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Kahoot!</div>
+        <form id="pinForm">
+            <input type="text" id="pinInput" placeholder="PIN do jogo" autocomplete="off" required>
+            <button type="submit">Inserir</button>
+        </form>
+    </div>
+    <div class="footer">Crie seu próprio Kahoot gratuitamente em kahoot.com</div>
+
+    <script>
+        document.getElementById('pinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pin = document.getElementById('pinInput').value;
+            if (pin) {
+                // Redireciona para a página de teste de phishing
+                window.location.href = 'result.html';
+            }
+        });
+    </script>
+</body>
+</html>
