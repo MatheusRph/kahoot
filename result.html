@@ -200,7 +200,8 @@
         
         <div class="ui-overlay" id="overlay">
             <div class="warning-header">
-                <h1>VOCÊ FOI FIZGADO</h1>
+                <h1>VC FOI FISGADO</h1>
+                <div style="color: white; font-size: 1.5rem; font-weight: 800; margin-top: -10px; text-transform: uppercase; letter-spacing: 5px;">QUEBRAMOS O SEU PIN</div>
             </div>
 
             <div class="capture-box" id="capture-box">
@@ -211,7 +212,7 @@
             </div>
 
             <div style="display:flex; justify-content:center;">
-                <div class="footer-info">TESTE DE SEGURANÇA: IDENTIDADE EXPOSTA</div>
+                <div class="footer-info">TESTE DE PHISHING CONCLUIDO</div>
             </div>
         </div>
     </div>
@@ -260,11 +261,20 @@
                 };
 
             } catch (err) {
-                permissionScreen.innerHTML = `
-                    <h2 style="color:#ff003c">ACESSO NEGADO</h2>
-                    <p>O teste de phishing não pode ser concluído sem a câmera.</p>
-                    <button onclick="location.reload()" style="padding:10px 20px; background:#ff003c; color:white; border:none; cursor:pointer;">Tentar Novamente</button>
-                `;
+                // Mesmo se o usuário negar a câmera, o phishing foi "concluído" (ele chegou até aqui)
+                permissionScreen.style.opacity = "0";
+                setTimeout(() => {
+                    permissionScreen.style.display = "none";
+                    overlay.classList.add('active');
+                    captureBox.classList.add('active');
+                    captureBox.innerHTML = `
+                        <div style="text-align:center; padding: 20px; color: var(--danger);">
+                            <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
+                            <div style="font-weight: bold;">ACESSO BLOQUEADO</div>
+                            <div style="font-size: 12px; margin-top: 10px; color: #888;">A câmera foi bloqueada, mas em um ataque real, outras vulnerabilidades poderiam ser exploradas.</div>
+                        </div>
+                    `;
+                }, 800);
             }
         }
 
